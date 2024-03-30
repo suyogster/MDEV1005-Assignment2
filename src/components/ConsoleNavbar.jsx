@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Jdenticon from './Jdenticon';
 import useAuth from '../hooks/useAuth';
 
-import { logout } from '../services/MockAuthService';
+import { logout } from '../services/FirebaseAuthService';
 
 import './console-navbar.css';
 import logo from './logo.svg';
@@ -33,7 +33,7 @@ function ConsoleNavbar() {
     <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-dark p-1 shadow">
       <div className="d-flex flex-grow-1">
         <a className="navbar-brand d-flex pt-2" href="/console">
-          <img src={logo} alt="console logo" className="navbar-logo" />Admin Console
+          <img src={logo} alt="console logo" className="navbar-logo" />Dashboard
         </a>
         <div className="w-100 text-right">
           <button className="navbar-toggler collapsed"

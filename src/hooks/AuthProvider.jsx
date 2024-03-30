@@ -1,7 +1,13 @@
 import React from 'react';
 
 import {
-  isAuth, login, logout, sendPasswordReset, addUser, getCurrentUser
+  isAuth,
+  login,
+  logout,
+  sendPasswordReset,
+  addUser,
+  getCurrentUser,
+  getAllUsers,
 } from '../services/FirebaseAuthService';
 
 const AuthContext = React.createContext(null);
@@ -14,7 +20,8 @@ function AuthProvider({ children, ...rest }) {
     logout,
     sendPasswordReset,
     addUser,
-    getCurrentUser
+    getCurrentUser,
+    getAllUsers,
   };
 
   return (

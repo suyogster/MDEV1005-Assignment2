@@ -10,20 +10,33 @@ function Sidebar() {
     { path: '/console/settings', title: 'Settings', icon: 'bi-gear' },
   ];
 
+  const subItems = [
+    { path: '/console/weather', title: 'Weather', icon: 'bi-layers' },
+    { path: '/console/news', title: 'News', icon: 'bi-layers' },
+    { path: '/console/stock', title: 'Stocks', icon: 'bi-layers' },
+  ];
+
   return (
     <>
-      <div className="position-sticky pt-3">
-        <ul className="nav flex-column">
-          {
-            items.map((item, i) => (
-              <li key={i} className="nav-item">
-                <NavLink className="nav-link" end to={item.path}>
-                  <i className={`bi ${item.icon} pe-2`} />
-                  {item.title}
-                </NavLink>
-              </li>
-            ))
-          }
+      <div className='position-sticky pt-3'>
+        <ul className='nav flex-column'>
+          {items.map((item, i) => (
+            <li key={i} className='nav-item'>
+              <NavLink className='nav-link' end to={item.path}>
+                <i className={`bi ${item.icon} pe-2`} />
+                {item.title}
+                {item.title === 'Dashboard' &&
+                  subItems.map((item, i) => (
+                    <li key={i} className='nav-item'>
+                      <NavLink className='nav-link' end to={item.path}>
+                        <i className={`bi ${item.icon} pe-2`} />
+                        {item.title}
+                      </NavLink>
+                    </li>
+                  ))}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </div>
     </>

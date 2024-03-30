@@ -7,7 +7,6 @@ function MainNavbar() {
   const items = [
     { path: '/', title: 'Home' },
     { path: '/login', title: 'Login' },
-    { path: '/logout', title: 'Logout' },
     { path: '/signup', title: 'Signup' },
   ];
 
@@ -15,7 +14,7 @@ function MainNavbar() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand d-flex pt-2" href="/">
-          <img src={logo} alt="" className="navbar-logo" />React-Bootstrap
+          <img src={logo} alt="" className="navbar-logo" />React Dashboard MDEV 10
         </a>
         <button className="navbar-toggler collapsed"
                 type="button"

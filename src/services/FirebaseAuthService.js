@@ -1,5 +1,12 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, setDoc, getDoc, doc } from 'firebase/firestore';
+import {
+  getFirestore,
+  setDoc,
+  getDoc,
+  getDocs,
+  doc,
+  collection,
+} from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -10,13 +17,13 @@ import {
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: 'AIzaSyAQ3LMIVTdvGZPo33OgVSjmuVl011lkEzE',
-  authDomain: 'thebyteroad-74fb4.firebaseapp.com',
-  projectId: 'thebyteroad-74fb4',
-  storageBucket: 'thebyteroad-74fb4.appspot.com',
-  messagingSenderId: '150477395165',
-  appId: '1:150477395165:web:7c723e2467ba80dc03f734',
-  measurementId: 'G-0W7G775B61',
+  apiKey: 'AIzaSyB4DONsy6ql4Ebz_DXrcdT0n6WPBt0IH8I',
+  authDomain: 'ideastation-927ea.firebaseapp.com',
+  projectId: 'ideastation-927ea',
+  storageBucket: 'ideastation-927ea.appspot.com',
+  messagingSenderId: '1095846432538',
+  appId: '1:1095846432538:web:d40ddb2d61c384d05766a3',
+  measurementId: 'G-RQFQ24WYRR',
 };
 
 const app = initializeApp(firebaseConfig);
@@ -45,6 +52,21 @@ async function getCurrentUser() {
   }
 
   return { username: '', firstname: '', lastname: '', email: '' };
+}
+
+async function getAllUsers() {
+  try {
+    const usersCollection = collection(db, 'users');
+    const querySnapshot = await getDocs(usersCollection);
+    const users = [];
+    querySnapshot.forEach((doc) => {
+      users.push({ id: doc.id, ...doc.data() });
+    });
+    return users;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    return [];
+  }
 }
 
 async function login(email, password) {
@@ -104,4 +126,12 @@ async function addUser(data) {
 
 // The useAuth hook is a wrapper to this service, make sure exported functions are also reflected
 // in the useAuth hook.
-export { isAuth, login, logout, sendPasswordReset, addUser, getCurrentUser };
+export {
+  isAuth,
+  login,
+  logout,
+  sendPasswordReset,
+  addUser,
+  getCurrentUser,
+  getAllUsers,
+};
