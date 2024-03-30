@@ -12,6 +12,8 @@ import {
 
 const AuthContext = React.createContext(null);
 
+// This function creates an AuthProvider component which encapsulates authentication-related functions
+// It provides an AuthContext to access authentication functionalities throughout the app
 function AuthProvider({ children, ...rest }) {
   // AuthContext to encapsulate these functions, which are wrappers to the services service.
   const auth = {

@@ -2,13 +2,16 @@
 
 import { useState } from 'react';
 
+// This custom hook named useForm is adapted from an example of custom form validation.
+// It manages form data, handles form submission, and validates form fields based on provided options.
+
 function useForm(options) {
   const [data, setData] = useState(options?.initialValues || {});
   const [errors, setErrors] = useState({});
 
   const handleChange = (fieldname, transformer) => (e) => {
     // A transformer transform the text form value to another value.
-    const value = (transformer) ? transformer(e.target.value) : e.target.value;
+    const value = transformer ? transformer(e.target.value) : e.target.value;
     setData({
       ...data,
       [fieldname]: value,
@@ -32,8 +35,7 @@ function useForm(options) {
           }
 
           const pattern = validator?.pattern;
-          if (pattern?.value && !RegExp(pattern.value)
-            .test(value)) {
+          if (pattern?.value && !RegExp(pattern.value).test(value)) {
             valid = false;
             errs[fieldname] = pattern.message;
           }
