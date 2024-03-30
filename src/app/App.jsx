@@ -16,6 +16,7 @@ import Settings from '../pages/Settings';
 import AuthProvider from '../hooks/AuthProvider';
 import News from '../pages/News';
 import Weather from '../pages/Weather';
+import Stock from '../pages/Stock';
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
             <Route path='settings' element={<Settings />} />
             <Route path='news' element={<News />} />
             <Route path='weather' element={<Weather />} />
-            <Route path='stock' element={<Settings />} />
+            <Route path='stock' element={<Stock />} />
           </Route>
         </Routes>
       </AuthProvider>

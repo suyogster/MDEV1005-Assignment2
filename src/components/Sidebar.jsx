@@ -11,7 +11,6 @@ function Sidebar() {
   ];
 
   const subItems = [
-    { path: '/console/weather', title: 'Weather', icon: 'bi-layers' },
     { path: '/console/news', title: 'News', icon: 'bi-layers' },
     { path: '/console/stock', title: 'Stocks', icon: 'bi-layers' },
   ];
