@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
+// This functional component represents the main application screen, which displays a custom set of tools.
 function Apps() {
   const title = 'Custom Tools';
   const [value, onChange] = useState(new Date());

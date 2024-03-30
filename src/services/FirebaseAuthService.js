@@ -30,17 +30,17 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 const db = getFirestore(app);
-
+// Function to check if user is authenticated
 function isAuth() {
   return new Promise((resolve) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       unsubscribe(); // Unsubscribe from the listener
       resolve(!!user);
-      user = user;
     });
   });
 }
 
+// Function to get current authenticated user's information
 async function getCurrentUser() {
   const currentAuthenticatedUser = auth.currentUser;
   if (currentAuthenticatedUser != null) {
@@ -54,6 +54,7 @@ async function getCurrentUser() {
   return { username: '', firstname: '', lastname: '', email: '' };
 }
 
+// Function to get all users
 async function getAllUsers() {
   try {
     const usersCollection = collection(db, 'users');
@@ -69,6 +70,7 @@ async function getAllUsers() {
   }
 }
 
+// Function to log in a user with email and password
 async function login(email, password) {
   try {
     const userCredential = await signInWithEmailAndPassword(
@@ -83,6 +85,7 @@ async function login(email, password) {
   }
 }
 
+// Function to log out the current user
 async function logout() {
   try {
     await auth.signOut();
@@ -91,6 +94,7 @@ async function logout() {
   }
 }
 
+// Function to send password reset email
 async function sendPasswordReset(email) {
   try {
     await sendPasswordResetEmail(auth, email);
@@ -99,6 +103,7 @@ async function sendPasswordReset(email) {
   }
 }
 
+// Function to add a new user
 async function addUser(data) {
   try {
     const { firstname, lastname, email, password, username } = data;
@@ -110,13 +115,12 @@ async function addUser(data) {
     );
     const user = userCredential.user;
 
-    const docRef = await setDoc(doc(db, 'users', user.uid), {
+    await setDoc(doc(db, 'users', user.uid), {
       email,
       firstname,
       lastname,
       username,
     });
-    console.log('DocRef::', docRef);
     return user;
   } catch (error) {
     console.error('Error adding document: ', error);

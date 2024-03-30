@@ -18,21 +18,33 @@ import News from '../pages/News';
 import Weather from '../pages/Weather';
 import Stock from '../pages/Stock';
 
+// Import AuthProvider hook
+import AuthProvider from '../hooks/AuthProvider';
+
+// Define the main App component
 function App() {
   return (
+    // Set up BrowserRouter to handle routing
     <BrowserRouter>
+      {/* Wrap the application with AuthProvider to provide authentication context */}
       <AuthProvider>
+        {/* Define routes using the Routes component */}
         <Routes>
+          {/* Route for main layout */}
           <Route path='/' element={<MainLayout />}>
+            {/* Define nested routes for different pages */}
             <Route path='' element={<Home />} />
             <Route path='login' element={<Login />} />
             <Route path='logout' element={<Logout />} />
             <Route path='signup' element={<Signup />} />
             <Route path='forgot' element={<ForgotPassword />} />
             <Route path='not-found' element={<NotFound />} />
+            {/* Redirect to not-found page for invalid routes */}
             <Route path='*' element={<Navigate to='/not-found' />} />
           </Route>
+          {/* Route for console layout */}
           <Route path='console' element={<ConsoleLayout />}>
+            {/* Define nested routes for console pages */}
             <Route path='' element={<Dashboard />} />
             <Route path='profile' element={<Profile />} />
             <Route path='apps' element={<Apps />} />
@@ -48,4 +60,5 @@ function App() {
   );
 }
 
+// Export the App component
 export default App;
